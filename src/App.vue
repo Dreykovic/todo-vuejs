@@ -7,13 +7,25 @@
 
         <div class="titre-colonne titre-colonne-2">Effectuée</div>
       </div>
-      <div class="ligne" v-for="task in tasks"  v-bind:key="task.action">
+      <div class="ligne" v-for="task in filteredTasks" v-bind:key="task.action">
         <div class="colonne-1">{{ task.action }}</div>
 
         <div class="colonne-2">
-          <input type="checkbox" v-model="task.faite"  class="check-task"/>{{
+          <input type="checkbox" v-model="task.faite" class="check-task" />{{
             task.faite
           }}
+        </div>
+      </div>
+      <div class="row bg-secondary py-2 mt-2 text-white">
+        <div class="col text-center">
+          <input
+            type="checkbox"
+            v-model="hideCompleted"
+            class="form-check-input"
+          />
+          <label class="form-check-label font-weight-bold">
+            Hide completed tasks
+          </label>
         </div>
       </div>
     </div>
@@ -31,7 +43,15 @@ export default {
         { action: "Debogger le code", faite: true },
         { action: "Finir le Tp de Laravel", faite: false },
       ],
+      hideCompleted: true,
     };
+  },
+  computed: {
+    filteredTasks() {
+      return this.hideCompleted
+        ? this.tasks.filter((task) => !task.faite)
+        : this.tasks;
+    },
   },
 };
 </script>
