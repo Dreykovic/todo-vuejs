@@ -16,14 +16,14 @@
           }}
         </div>
       </div>
-      <div class="row bg-secondary py-2 mt-2 text-white">
-        <div class="col text-center">
+      <div class="container-filtre">
+        <div class="filtre-content">
           <input
             type="checkbox"
             v-model="hideCompleted"
-            class="form-check-input"
+            id="filtrer"
           />
-          <label class="form-check-label font-weight-bold">
+          <label  for="filtrer">
             Hide completed tasks
           </label>
         </div>
@@ -91,4 +91,14 @@ export default {
 #app .container-task .ligne .colonne-2 {
   margin-right: 30px;
 }
+/**Task filtring style */
+.container-filtre{
+  background: gray;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
 </style>
