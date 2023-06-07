@@ -3,9 +3,9 @@
     <h4 class="title">La TO DO liste de {{ nom }}</h4>
     <div class="container-task">
       <div class="ligne">
-        <div class="titre-colonne-1">Tâche</div>
+        <div class="titre-colonne titre-colonne-1">Tâche</div>
 
-        <div class="titre-colonne-1">Effectuée</div>
+        <div class="titre-colonne titre-colonne-2">Effectuée</div>
       </div>
       <div class="ligne" v-for="task in tasks" v-bind:key="task.action">
         <div class="colonne-1">{{ task.action }}</div>
@@ -44,14 +44,28 @@ export default {
 #app > h4.title {
   background: dodgerblue;
   width: 100%;
-  height: 100px;
+  padding: 15px;
   text-align: center;
   color: white;
   font-size: large;
 }
 /**task display style */
 #app .container-task{
-  padding: 50px;
+  padding: auto 50px;
   width: 80%;
+}
+
+#app .container-task .ligne{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 20px;
+}
+#app .container-task .ligne .titre-colonne{
+  font-weight: 800;
+  font-size: large;
+}
+#app .container-task .ligne .colonne-2{
+  margin-right: 30px;
 }
 </style>
