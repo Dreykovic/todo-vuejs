@@ -7,10 +7,14 @@
 
         <div class="titre-colonne titre-colonne-2">Effectuée</div>
       </div>
-      <div class="ligne" v-for="task in tasks" v-bind:key="task.action">
+      <div class="ligne" v-for="task in tasks"  v-bind:key="task.action">
         <div class="colonne-1">{{ task.action }}</div>
 
-        <div class="colonne-2">{{ task.faite }}</div>
+        <div class="colonne-2">
+          <input type="checkbox" v-model="task.faite"  class="check-task"/>{{
+            task.faite
+          }}
+        </div>
       </div>
     </div>
   </div>
@@ -38,7 +42,6 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 }
 /*app title style*/
 #app > h4.title {
@@ -50,22 +53,22 @@ export default {
   font-size: large;
 }
 /**task display style */
-#app .container-task{
+#app .container-task {
   padding: auto 50px;
   width: 80%;
 }
 
-#app .container-task .ligne{
+#app .container-task .ligne {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   padding: 20px;
 }
-#app .container-task .ligne .titre-colonne{
+#app .container-task .ligne .titre-colonne {
   font-weight: 800;
   font-size: large;
 }
-#app .container-task .ligne .colonne-2{
+#app .container-task .ligne .colonne-2 {
   margin-right: 30px;
 }
 </style>
