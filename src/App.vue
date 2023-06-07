@@ -2,20 +2,31 @@
   <div id="app">
     <h4 class="title">La TO DO liste de {{ nom }}</h4>
     <div class="container-task">
-      <div class="ligne">
-        <div class="titre-colonne titre-colonne-1">Tâche</div>
-
-        <div class="titre-colonne titre-colonne-2">Effectuée</div>
-      </div>
-      <div class="ligne" v-for="task in filteredTasks" v-bind:key="task.action">
-        <div class="colonne-1">{{ task.action }}</div>
-
-        <div class="colonne-2">
-          <input type="checkbox" v-model="task.faite" class="check-task" />{{
-            task.faite
-          }}
+      <div class="row" v-if="filteredTasks.length == 0">
+        <div class="col text-center">
+          <b>{{ nom }} tu n'as plus rien a faire </b>
         </div>
       </div>
+      <template v-else>
+        <div class="ligne">
+          <div class="titre-colonne titre-colonne-1">Tâche</div>
+
+          <div class="titre-colonne titre-colonne-2">Effectuée</div>
+        </div>
+        <div
+          class="ligne"
+          v-for="task in filteredTasks"
+          v-bind:key="task.action"
+        >
+          <div class="colonne-1">{{ task.action }}</div>
+
+          <div class="colonne-2">
+            <input type="checkbox" v-model="task.faite" class="check-task" />{{
+              task.faite
+            }}
+          </div>
+        </div>
+      </template>
       <div class="ligne">
         <div class="add colonne-1">
           <input
@@ -32,6 +43,12 @@
         <div class="filtre-content">
           <input type="checkbox" v-model="hideCompleted" id="filtrer" />
           <label for="filtrer"> Hide completed tasks </label>
+        </div>
+
+        <div class="col text-center">
+          <button class="btn-deleted" v-on:click="deleteCompleted">
+            Delete Completed
+          </button>
         </div>
       </div>
     </div>
