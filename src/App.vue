@@ -42,12 +42,12 @@
       <div class="container-filtre">
         <div class="filtre-content">
           <input type="checkbox" v-model="hideCompleted" id="filtrer" />
-          <label for="filtrer"> Hide completed tasks </label>
+          <label for="filtrer"> Cacher les taches completes </label>
         </div>
 
-        <div class="col text-center">
+        <div class="col text-center" style="padding: 15px">
           <button class="btn-deleted" v-on:click="deleteCompleted">
-            Delete Completed
+            Supprimer les taches completes
           </button>
         </div>
       </div>
@@ -81,8 +81,15 @@ export default {
   methods: {
     addNewTodo() {
       this.tasks.push({ action: this.newItemText, faite: false });
-      localStorage.setItem("todos", JSON.stringify(this.tasks));
+      this.storeData();
       this.newItemText = "";
+    },
+    storeData() {
+      localStorage.setItem("todos", JSON.stringify(this.tasks));
+    },
+    deleteCompleted() {
+      this.tasks = this.tasks.filter((task) => !task.faite);
+      this.storeData();
     },
   },
   created() {
