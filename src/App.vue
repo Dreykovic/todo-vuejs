@@ -18,7 +18,11 @@
       </div>
       <div class="ligne">
         <div class="add colonne-1">
-          <input v-model="newItemText" class="input-task" v-on:keyup.enter="addNewTodo"/>
+          <input
+            v-model="newItemText"
+            class="input-task"
+            v-on:keyup.enter="addNewTodo"
+          />
         </div>
         <div class="colonne-2">
           <button class="btn-add-task" v-on:click="addNewTodo">Add</button>
@@ -40,11 +44,12 @@ export default {
     return {
       nom: "Drey",
       tasks: [
-        { action: "Finir le diagramme de classes", faite: false },
-        { action: "Concevoirla vidéo du projet", faite: false },
-        { action: "Debogger le code", faite: true },
-        { action: "Finir le Tp de Laravel", faite: false },
+        // { action: "Finir le diagramme de classes", faite: false },
+        // { action: "Concevoirla vidéo du projet", faite: false },
+        // { action: "Debogger le code", faite: true },
+        // { action: "Finir le Tp de Laravel", faite: false },
       ],
+      // tasks:
       hideCompleted: true,
       newItemText: "",
     };
@@ -59,8 +64,15 @@ export default {
   methods: {
     addNewTodo() {
       this.tasks.push({ action: this.newItemText, faite: false });
+      localStorage.setItem("todos", JSON.stringify(this.tasks));
       this.newItemText = "";
     },
+  },
+  created() {
+    let donnes = localStorage.getItem("todos");
+    if (donnes != null) {
+      this.tasks = JSON.parse(donnes);
+    }
   },
 };
 </script>
@@ -88,7 +100,6 @@ export default {
   padding: auto 50px;
   width: 80%;
 }
-
 
 .ligne {
   display: flex;
@@ -120,14 +131,14 @@ export default {
 /* .add.colonne-1{
   width: 50%;
 } */
-.input-task{
+.input-task {
   border: solid dodgerblue 1px;
   height: 50px;
   width: 500px;
   font-size: larger;
   caret-color: blue;
 }
-.btn-add-task{
+.btn-add-task {
   color: white;
   background: dodgerblue;
   border-radius: 15px;
