@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="ligne">
-        <div class="colonne-1">
+        <div class="add colonne-1">
           <input v-model="newItemText" class="input-task" />
         </div>
         <div class="colonne-2">
@@ -89,7 +89,7 @@ export default {
   width: 80%;
 }
 
-#app .container-task .ligne,
+
 .ligne {
   display: flex;
   flex-wrap: nowrap;
@@ -102,7 +102,7 @@ export default {
   font-size: large;
 }
 
-#app .container-task .ligne .colonne-2 {
+.colonne-2 {
   margin-right: 30px;
 }
 
@@ -117,4 +117,20 @@ export default {
 }
 
 /**Style for adding tast */
+/* .add.colonne-1{
+  width: 50%;
+} */
+.input-task{
+  border: solid dodgerblue 1px;
+  height: 50px;
+  width: 500px;
+  font-size: larger;
+  caret-color: blue;
+}
+.btn-add-task{
+  color: white;
+  background: dodgerblue;
+  border-radius: 15px;
+  padding: 20px;
+}
 </style>
