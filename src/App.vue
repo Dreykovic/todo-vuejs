@@ -16,16 +16,18 @@
           }}
         </div>
       </div>
+      <div class="ligne">
+        <div class="colonne-1">
+          <input v-model="newItemText" class="input-task" />
+        </div>
+        <div class="colonne-2">
+          <button class="btn-add-task" v-on:click="addNewTodo">Add</button>
+        </div>
+      </div>
       <div class="container-filtre">
         <div class="filtre-content">
-          <input
-            type="checkbox"
-            v-model="hideCompleted"
-            id="filtrer"
-          />
-          <label  for="filtrer">
-            Hide completed tasks
-          </label>
+          <input type="checkbox" v-model="hideCompleted" id="filtrer" />
+          <label for="filtrer"> Hide completed tasks </label>
         </div>
       </div>
     </div>
@@ -44,6 +46,7 @@ export default {
         { action: "Finir le Tp de Laravel", faite: false },
       ],
       hideCompleted: true,
+      newItemText: "",
     };
   },
   computed: {
@@ -51,6 +54,12 @@ export default {
       return this.hideCompleted
         ? this.tasks.filter((task) => !task.faite)
         : this.tasks;
+    },
+  },
+  methods: {
+    addNewTodo() {
+      this.tasks.push({ action: this.newItemText, faite: false });
+      this.newItemText = "";
     },
   },
 };
@@ -63,6 +72,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 /*app title style*/
 #app > h4.title {
   background: dodgerblue;
@@ -72,27 +82,32 @@ export default {
   color: white;
   font-size: large;
 }
+
 /**task display style */
 #app .container-task {
   padding: auto 50px;
   width: 80%;
 }
 
-#app .container-task .ligne {
+#app .container-task .ligne,
+.ligne {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   padding: 20px;
 }
+
 #app .container-task .ligne .titre-colonne {
   font-weight: 800;
   font-size: large;
 }
+
 #app .container-task .ligne .colonne-2 {
   margin-right: 30px;
 }
+
 /**Task filtring style */
-.container-filtre{
+.container-filtre {
   background: gray;
   color: white;
   display: flex;
@@ -101,4 +116,5 @@ export default {
   padding: 10px;
 }
 
+/**Style for adding tast */
 </style>
