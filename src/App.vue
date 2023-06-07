@@ -18,7 +18,7 @@
       </div>
       <div class="ligne">
         <div class="add colonne-1">
-          <input v-model="newItemText" class="input-task" />
+          <input v-model="newItemText" class="input-task" v-on:keyup.enter="addNewTodo"/>
         </div>
         <div class="colonne-2">
           <button class="btn-add-task" v-on:click="addNewTodo">Add</button>
